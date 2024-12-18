@@ -1,20 +1,3 @@
-<!-- 
-
-
-
-
-
-
-おい！！！！
-ソースコード見るんじゃねえ！！！！！
-
-
-
-
-
-
-
--->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -39,72 +22,72 @@
         <tbody>
             <tr>
                 <td>キリスト教学</td>
-                <td><input type="number" id="credit1" class="form-control-plaintext" value="1" readonly></td>
+                <td><input type="number" id="credit1" class="form-control-plaintext" value="1" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score1" class="form-control"></td>
             </tr>
             <tr>
                 <td>現代の国語</td>
-                <td><input type="number" id="credit2" class="form-control-plaintext" value="2" readonly></td>
+                <td><input type="number" id="credit2" class="form-control-plaintext" value="2" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score2" class="form-control"></td>
             </tr>
             <tr>
                 <td>言語文化</td>
-                <td><input type="number" id="credit3" class="form-control-plaintext" value="2" readonly></td>
+                <td><input type="number" id="credit3" class="form-control-plaintext" value="2" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score3" class="form-control"></td>
             </tr>
             <tr>
                 <td>地理総合</td>
-                <td><input type="number" id="credit4" class="form-control-plaintext" value="2" readonly></td>
+                <td><input type="number" id="credit4" class="form-control-plaintext" value="2" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score4" class="form-control"></td>
             </tr>
             <tr>
                 <td>歴史総合</td>
-                <td><input type="number" id="credit5" class="form-control-plaintext" value="2" readonly></td>
+                <td><input type="number" id="credit5" class="form-control-plaintext" value="2" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score5" class="form-control"></td>
             </tr>
             <tr>
                 <td>数学Ｉ</td>
-                <td><input type="number" id="credit6" class="form-control-plaintext" value="3" readonly></td>
+                <td><input type="number" id="credit6" class="form-control-plaintext" value="3" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score6" class="form-control"></td>
             </tr>
             <tr>
                 <td>数学Ａ</td>
-                <td><input type="number" id="credit7" class="form-control-plaintext" value="2" readonly></td>
+                <td><input type="number" id="credit7" class="form-control-plaintext" value="2" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score7" class="form-control"></td>
             </tr>
             <tr>
                 <td>化学基礎</td>
-                <td><input type="number" id="credit8" class="form-control-plaintext" value="2" readonly></td>
+                <td><input type="number" id="credit8" class="form-control-plaintext" value="2" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score8" class="form-control"></td>
             </tr>
             <tr>
                 <td>体育</td>
-                <td><input type="number" id="credit9" class="form-control-plaintext" value="3" readonly></td>
+                <td><input type="number" id="credit9" class="form-control-plaintext" value="3" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score9" class="form-control"></td>
             </tr>
             <tr>
                 <td>保健</td>
-                <td><input type="number" id="credit10" class="form-control-plaintext" value="1" readonly></td>
+                <td><input type="number" id="credit10" class="form-control-plaintext" value="1" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score10" class="form-control"></td>
             </tr>
             <tr>
                 <td>美術・音楽</td>
-                <td><input type="number" id="credit11" class="form-control-plaintext" value="2" readonly></td>
+                <td><input type="number" id="credit11" class="form-control-plaintext" value="2" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score11" class="form-control"></td>
             </tr>
             <tr>
                 <td>英語コミュニケーションＩ</td>
-                <td><input type="number" id="credit12" class="form-control-plaintext" value="3" readonly></td>
+                <td><input type="number" id="credit12" class="form-control-plaintext" value="3" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score12" class="form-control"></td>
             </tr>
             <tr>
                 <td>論理・表現Ｉ</td>
-                <td><input type="number" id="credit13" class="form-control-plaintext" value="2" readonly></td>
+                <td><input type="number" id="credit13" class="form-control-plaintext" value="2" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score13" class="form-control"></td>
             </tr>
             <tr>
                 <td>情報Ｉ</td>
-                <td><input type="number" id="credit14" class="form-control-plaintext" value="2" readonly></td>
+                <td><input type="number" id="credit14" class="form-control-plaintext" value="2" readonly disabled></td>
                 <td><input type="text" inputmode="numeric" id="score14" class="form-control"></td>
             </tr>
         </tbody>
@@ -127,6 +110,32 @@
             let weightedAverage = totalWeightedScores / totalCredits;
             alert(`あなたの加重平均は${weightedAverage.toFixed(2)}です。\n\n※学内推薦の基準は4.00以上です。`);
         }
+
+        function handleScoreInput(event, currentFieldNum) {
+            const input = event.target;
+            const value = input.value;
+
+            if (!/^[1-9]$|^10$/.test(value)) {
+                input.value = '';
+                return;
+            }
+
+            if (value !== '1' && currentFieldNum < 14) {
+                const nextField = document.getElementById(`score${currentFieldNum + 1}`);
+                if (nextField) {
+                    nextField.focus();
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            for (let i = 1; i <= 14; i++) {
+                const scoreField = document.getElementById(`score${i}`);
+                if (scoreField) {
+                    scoreField.addEventListener('input', (e) => handleScoreInput(e, i));
+                }
+            }
+        });
     </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
