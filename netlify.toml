@@ -1,0 +1,5 @@
+[[redirects]]
+    from = "/*"
+    to = "https://dshs-gpa.vercel.app/:splat"
+    status = 302
+    force = true
